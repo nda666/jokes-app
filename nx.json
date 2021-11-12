@@ -17,12 +17,7 @@
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ],
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
         "accessToken": "YjQ5ZGFlMmYtNzEwMi00OGI5LWEwYTgtZTAyOGZhOTY0OWQ0fHJlYWQtd3JpdGU="
       }
     }
@@ -35,5 +30,18 @@
       }
     ]
   },
-  "defaultProject": "nxnest-tiar"
+  "defaultProject": "nxnest-tiar",
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "babel": true
+      }
+    },
+    "@nrwl/next": {
+      "application": {
+        "style": "scss",
+        "linter": "eslint"
+      }
+    }
+  }
 }
