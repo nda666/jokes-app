@@ -1,0 +1,52 @@
+{
+  "root": "apps/nxnest-tiar",
+  "sourceRoot": "apps/nxnest-tiar/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/nxnest-tiar",
+        "main": "apps/nxnest-tiar/src/main.ts",
+        "tsConfig": "apps/nxnest-tiar/tsconfig.app.json",
+        "assets": ["apps/nxnest-tiar/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/nxnest-tiar/src/environments/environment.ts",
+              "with": "apps/nxnest-tiar/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:execute",
+      "options": {
+        "buildTarget": "nxnest-tiar:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/nxnest-tiar/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/nxnest-tiar"],
+      "options": {
+        "jestConfig": "apps/nxnest-tiar/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
