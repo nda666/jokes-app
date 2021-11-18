@@ -1,8 +1,8 @@
 {
   "version": 2,
   "projects": {
+    "nest": "apps/nest",
     "next": "apps/next",
-    "next-e2e": "apps/next-e2e",
-    "nxnest-tiar": "apps/nxnest-tiar"
+    "next-e2e": "apps/next-e2e"
   }
 }
