@@ -1,12 +1,13 @@
+import { User } from '.prisma/client';
 import { Args, Query, Resolver } from '@nestjs/graphql';
-import { Hello } from './hello';
+import { User as UserModel } from '../../@models/user/user.model';
+import { UserService } from './user.service';
 
-@Resolver(() => Hello)
+@Resolver()
 export class UserResolver {
-  @Query(() => Hello)
-  hello(@Args('text') text: string): Hello {
-    return {
-      message: `Hello ${text}`,
-    };
+  constructor(private readonly userService: UserService) {}
+  @Query(() => [UserModel])
+  async users(): Promise<User[]> {
+    return await this.userService.findAll();
   }
 }

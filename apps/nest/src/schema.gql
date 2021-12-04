@@ -2,10 +2,104 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Hello {
-  message: String!
+type Category {
+  Jokes: [Joke!]
+  _count: CategoryCount
+  createdAt: Timestamp!
+  description: String!
+  id: ID!
+  name: String!
+  updatedAt: Timestamp
+}
+
+type CategoryCount {
+  Jokes: Int!
+}
+
+type Joke {
+  _count: JokeCount
+  answer: String!
+  category: Category
+  category_id: Int
+  createdAt: Timestamp!
+  id: ID!
+  likes: [Like!]
+  question: String!
+  ratings: [Rating!]
+  tags: [Tag!]
+  updatedAt: Timestamp
+  user: User
+  user_id: Int
+}
+
+type JokeCount {
+  likes: Int!
+  ratings: Int!
+  tags: Int!
+}
+
+type Like {
+  createdAt: Timestamp!
+  id: ID!
+  joke: Joke
+  joke_id: Int
+  user: User
+  user_id: Int
 }
 
 type Query {
-  hello(text: String!): Hello!
+  sayHello: String!
+  users: [User!]!
+}
+
+type Rating {
+  createdAt: Timestamp!
+  id: ID!
+  joke: Joke
+  joke_id: Int
+  user: User
+  user_id: Int
+  value: Int!
+}
+
+type Tag {
+  Jokes: [Joke!]
+  _count: TagCount
+  id: ID!
+  name: String!
+}
+
+type TagCount {
+  Jokes: Int!
+}
+
+"""
+`Date` type as integer. Type represents date and time as number of milliseconds from start of UNIX epoch.
+"""
+scalar Timestamp
+
+type User {
+  Jokes: [Joke!]
+  Like: [Like!]
+  Rating: [Rating!]
+  _count: UserCount
+  birthday: Timestamp!
+  createdAt: Timestamp!
+  email: String!
+  id: ID!
+  name: String
+  role: users_role!
+  updatedAt: Timestamp
+}
+
+type UserCount {
+  Jokes: Int!
+  Like: Int!
+  Rating: Int!
+}
+
+enum users_role {
+  ADMIN
+  SUPERADMIN
+  USER
 }

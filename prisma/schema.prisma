@@ -1,5 +1,11 @@
 generator client {
   provider = "prisma-client-js"
+
+}
+
+generator nestgraphql {
+  provider = "node node_modules/prisma-nestjs-graphql"
+  output   = "../apps/nest/src/@models"
 }
 
 datasource db {
@@ -7,25 +13,83 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model products {
-  id        Int      @id @default(autoincrement())
-  name      String
-  userId    Int      @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime
-  users     users    @relation(fields: [userId], references: [id])
-}
-
-model users {
+model User {
   id        Int        @id @default(autoincrement())
+  /// @FieldType({ name: 'Scalars.GraphQLEmailAddress', from: 'graphql-scalars', input: true })
   email     String     @unique
   name      String?
+  /// @HideField()
   password  String
-  phone     String     @unique
-  createdAt DateTime   @default(now())
-  updatedAt DateTime?
+  birthday  DateTime   @db.Date
   role      users_role @default(USER)
-  products  products?
+  createdAt DateTime   @default(now()) @db.Timestamp
+  updatedAt DateTime?  @updatedAt @db.Timestamp
+
+  Jokes  Joke[]
+  Like   Like[]
+  Rating Rating[]
+  @@map("users")
+}
+
+model Joke {
+  id          Int       @id @default(autoincrement())
+  question    String    @db.Text
+  answer      String    @db.Text
+  user_id     Int?
+  user        User?     @relation(fields: [user_id], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  category_id Int?
+  category    Category? @relation(fields: [category_id], references: [id], onDelete: SetNull, onUpdate: Cascade)
+
+  createdAt DateTime  @default(now()) @db.Timestamp
+  updatedAt DateTime? @updatedAt @db.Timestamp
+
+  tags    Tag[]
+  likes   Like[]
+  ratings Rating[]
+
+  @@map("jokes")
+}
+
+model Category {
+  id          Int       @id @default(autoincrement())
+  name        String    @unique
+  description String    @db.Text
+  createdAt   DateTime  @default(now()) @db.Timestamp
+  updatedAt   DateTime? @updatedAt @db.Timestamp
+
+  Jokes Joke[]
+  @@map("categories")
+}
+
+model Tag {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  Jokes Joke[]
+
+  @@map("tags")
+}
+
+model Like {
+  id        Int      @id @default(autoincrement())
+  user_id   Int?
+  user      User?    @relation(fields: [user_id], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  joke_id   Int?
+  joke      Joke?    @relation(fields: [joke_id], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  createdAt DateTime @default(now()) @db.Timestamp
+
+  @@map("likes")
+}
+
+model Rating {
+  id        Int      @id @default(autoincrement())
+  user_id   Int?
+  user      User?    @relation(fields: [user_id], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  joke_id   Int?
+  joke      Joke?    @relation(fields: [joke_id], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  value     Int      @default(dbgenerated("0")) @db.TinyInt
+  createdAt DateTime @default(now()) @db.Timestamp
+
+  @@map("ratings")
 }
 
 enum users_role {
