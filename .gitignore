@@ -9,6 +9,7 @@ localazy.json
 /dist
 /tmp
 /out-tsc
+/logs
 
 # dependencies
 /node_modules
