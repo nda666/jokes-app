@@ -2,75 +2,202 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Category {
-  Jokes: [Joke!]
-  _count: CategoryCount
-  createdAt: Timestamp!
-  description: String!
-  id: ID!
-  name: String!
-  updatedAt: Timestamp
+"""Application Types"""
+type Application {
+  """Application Name"""
+  name: String
+
+  """Application Version"""
+  version: String
 }
 
-type CategoryCount {
-  Jokes: Int!
+input CreateOneJokeInput {
+  answer: String!
+  question: String!
+}
+
+input CreateOneUserInput {
+  data: UserCreateInput!
+}
+
+input DateTimeFilter {
+  equals: Timestamp
+  gt: Timestamp
+  gte: Timestamp
+  in: [Timestamp!]
+  lt: Timestamp
+  lte: Timestamp
+  not: NestedDateTimeFilter
+  notIn: [Timestamp!]
+}
+
+input DateTimeNullableFilter {
+  equals: Timestamp
+  gt: Timestamp
+  gte: Timestamp
+  in: [Timestamp!]
+  lt: Timestamp
+  lte: Timestamp
+  not: NestedDateTimeNullableFilter
+  notIn: [Timestamp!]
+}
+
+input Enumusers_roleFilter {
+  equals: users_role
+  in: [users_role!]
+  not: NestedEnumusers_roleFilter
+  notIn: [users_role!]
+}
+
+input IntFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntFilter
+  notIn: [Int!]
 }
 
 type Joke {
-  _count: JokeCount
   answer: String!
-  category: Category
   category_id: Int
   createdAt: Timestamp!
   id: ID!
-  likes: [Like!]
   question: String!
-  ratings: [Rating!]
-  tags: [Tag!]
   updatedAt: Timestamp
-  user: User
   user_id: Int
 }
 
-type JokeCount {
-  likes: Int!
-  ratings: Int!
-  tags: Int!
-}
-
-type Like {
+type JokeModel {
+  answer: String!
+  category_id: Int
   createdAt: Timestamp!
   id: ID!
-  joke: Joke
-  joke_id: Int
-  user: User
+  question: String!
+  updatedAt: Timestamp
   user_id: Int
+}
+
+type Mutation {
+  createJoke(data: CreateOneJokeInput!): JokeModel!
+
+  """create one user, returns the created user"""
+  createOneUser(
+    """data for the new user"""
+    input: CreateOneUserInput!
+  ): UserModel!
+  deleteJoke(id: String!): JokeModel!
+  updateJoke(data: UpdateJokeInput!, id: String!): JokeModel!
+}
+
+input NestedDateTimeFilter {
+  equals: Timestamp
+  gt: Timestamp
+  gte: Timestamp
+  in: [Timestamp!]
+  lt: Timestamp
+  lte: Timestamp
+  not: NestedDateTimeFilter
+  notIn: [Timestamp!]
+}
+
+input NestedDateTimeNullableFilter {
+  equals: Timestamp
+  gt: Timestamp
+  gte: Timestamp
+  in: [Timestamp!]
+  lt: Timestamp
+  lte: Timestamp
+  not: NestedDateTimeNullableFilter
+  notIn: [Timestamp!]
+}
+
+input NestedEnumusers_roleFilter {
+  equals: users_role
+  in: [users_role!]
+  not: NestedEnumusers_roleFilter
+  notIn: [users_role!]
+}
+
+input NestedIntFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntFilter
+  notIn: [Int!]
+}
+
+input NestedStringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+input NestedStringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringNullableFilter
+  notIn: [String!]
+  startsWith: String
 }
 
 type Query {
-  sayHello: String!
-  users: [User!]!
+  app: Application!
+  joke(id: String!): String!
+  jokes: [JokeModel!]!
+  users(find: UserWhereInput, order: UserOrderByWithRelationInput): [UserModel!]!
 }
 
-type Rating {
-  createdAt: Timestamp!
-  id: ID!
-  joke: Joke
-  joke_id: Int
-  user: User
-  user_id: Int
-  value: Int!
+enum SortOrder {
+  asc
+  desc
 }
 
-type Tag {
-  Jokes: [Joke!]
-  _count: TagCount
-  id: ID!
-  name: String!
+input StringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringFilter
+  notIn: [String!]
+  startsWith: String
 }
 
-type TagCount {
-  Jokes: Int!
+input StringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringNullableFilter
+  notIn: [String!]
+  startsWith: String
 }
 
 """
@@ -78,24 +205,51 @@ type TagCount {
 """
 scalar Timestamp
 
-type User {
+input UpdateJokeInput {
+  answer: String
+  question: String
+}
+
+input UserCreateInput {
+  birthday: Timestamp!
+  email: String!
+  name: String
+  password: String!
+}
+
+type UserModel {
   Jokes: [Joke!]
-  Like: [Like!]
-  Rating: [Rating!]
-  _count: UserCount
   birthday: Timestamp!
   createdAt: Timestamp!
   email: String!
   id: ID!
-  name: String
+  name: String!
   role: users_role!
   updatedAt: Timestamp
 }
 
-type UserCount {
-  Jokes: Int!
-  Like: Int!
-  Rating: Int!
+input UserOrderByWithRelationInput {
+  birthday: SortOrder
+  createdAt: SortOrder
+  email: SortOrder
+  id: SortOrder
+  name: SortOrder
+  role: SortOrder
+  updatedAt: SortOrder
+}
+
+input UserWhereInput {
+  AND: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  birthday: DateTimeFilter
+  createdAt: DateTimeFilter
+  email: StringFilter
+  id: IntFilter
+  name: StringNullableFilter
+  password: StringFilter
+  role: Enumusers_roleFilter
+  updatedAt: DateTimeNullableFilter
 }
 
 enum users_role {

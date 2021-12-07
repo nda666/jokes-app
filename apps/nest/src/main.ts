@@ -9,9 +9,11 @@ import {
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
 import { AppModule } from './app/app.module';
-import { Logger, PinoLogger } from 'nestjs-pino';
+import { Logger } from 'nestjs-pino';
 import { ConfigService } from '@nestjs/config';
 import { AppConfigInterface } from './interfaces/config/app.interface';
+import { ValidationPipe } from './pipes/validation.pipe';
+import { useContainer } from 'class-validator';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -20,8 +22,9 @@ async function bootstrap() {
   );
   const configService = app.get(ConfigService);
   const globalPrefix = 'api';
-  app.useLogger(app.get(Logger));
+  useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
+  app.useLogger(app.get(Logger));
   app.setGlobalPrefix(globalPrefix);
   const port = configService.get<AppConfigInterface>('app').port;
   await app.listen(port, () => {

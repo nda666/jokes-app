@@ -4,8 +4,20 @@ generator client {
 }
 
 generator nestgraphql {
-  provider = "node node_modules/prisma-nestjs-graphql"
-  output   = "../apps/nest/src/@models"
+  provider                    = "node node_modules/prisma-nestjs-graphql"
+  output                      = "../apps/nest/src/@models"
+  useInputType_WhereInput_ALL = "WhereInput"
+
+  decorate_1_type      = "CreateOneUserArgs"
+  decorate_1_field     = data
+  decorate_1_name      = ValidateNested
+  decorate_1_from      = "class-validator"
+  decorate_1_arguments = "[]"
+  decorate_2_type      = "CreateOneUserArgs"
+  decorate_2_field     = data
+  decorate_2_from      = "class-transformer"
+  decorate_2_arguments = "['() => {propertyType.0}']"
+  decorate_2_name      = Type
 }
 
 datasource db {
@@ -18,7 +30,7 @@ model User {
   /// @FieldType({ name: 'Scalars.GraphQLEmailAddress', from: 'graphql-scalars', input: true })
   email     String     @unique
   name      String?
-  /// @HideField()
+  /// @HideField({ match: 'UserCreate*Input' })
   password  String
   birthday  DateTime   @db.Date
   role      users_role @default(USER)

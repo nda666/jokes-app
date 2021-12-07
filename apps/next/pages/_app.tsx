@@ -1,19 +1,21 @@
+import { ApolloProvider } from '@apollo/client';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import { useApollo } from '../apollo/client';
 import './styles.css';
-import { ChakraProvider } from '@chakra-ui/react';
 
-function CustomApp({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
+  const apolloClient = useApollo(pageProps.initialApolloState);
   return (
-    <ChakraProvider>
+    <ApolloProvider client={apolloClient}>
       <Head>
         <title>Welcome to next!</title>
       </Head>
       <div className="app">
         <Component {...pageProps} />
       </div>
-    </ChakraProvider>
+    </ApolloProvider>
   );
 }
 
-export default CustomApp;
+export default App;

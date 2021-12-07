@@ -8,10 +8,12 @@ import { join } from 'path';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import config from '../configs';
 import { LoggerModule } from 'nestjs-pino';
-import { AppConfigInterface } from '../interfaces/config/app.interface';
 import { GraphqlConfigInterface } from '../interfaces/config/graphql.interface';
 import { AppResolver } from './app.resolver';
-import { UserResolver } from './user/user.resolver';
+import { createWriteStream } from 'fs';
+import { JokeModule } from './joke/joke.module';
+import { APP_PIPE } from '@nestjs/core';
+import { ValidationPipe } from '../pipes/validation.pipe';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -21,8 +23,34 @@ import { UserResolver } from './user/user.resolver';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (config: ConfigService) => {
+        const streams = [
+          { stream: createWriteStream(`./logs/info.log`) },
+          {
+            level: 'info',
+            stream: createWriteStream(`./logs/info.log`),
+          },
+          {
+            level: 'debug',
+            stream: createWriteStream(`./logs/debug.log`),
+          },
+          {
+            level: 'warn',
+            stream: createWriteStream(`./logs/warn.log`),
+          },
+          {
+            level: 'error',
+            stream: createWriteStream(`./logs/error.log`),
+          },
+          {
+            level: 'fatal',
+            stream: createWriteStream(`./fatal.log`),
+          },
+        ];
         return {
-          pinoHttp: { level: 'debug' },
+          pinoHttp: {
+            level: 'debug',
+            streams,
+          },
         };
       },
     }),
@@ -47,8 +75,9 @@ import { UserResolver } from './user/user.resolver';
       },
     }),
     UserModule,
+    JokeModule,
   ],
   controllers: [AppController],
-  providers: [AppService, AppResolver, UserResolver],
+  providers: [AppService, AppResolver],
 })
 export class AppModule {}
