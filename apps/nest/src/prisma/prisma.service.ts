@@ -8,7 +8,7 @@ import { AppConfigInterface } from '../interfaces/config/app.interface';
 export class PrismaService extends PrismaClient implements OnModuleInit {
   constructor(private config: ConfigService) {
     super({
-      log: config.get<AppConfigInterface>('app').debug
+      log: config.get<AppConfigInterface>('app')?.debug
         ? [
             { emit: 'event', level: 'query' },
             { emit: 'stdout', level: 'info' },
