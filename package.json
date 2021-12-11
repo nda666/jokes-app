@@ -37,7 +37,7 @@
     "bcrypt": "^5.0.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
-    "core-js": "^3.6.5",
+    "core-js": "^3.19.3",
     "faker": "^5.5.3",
     "file-stream-rotator": "^0.5.7",
     "framer-motion": "^4",
