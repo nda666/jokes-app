@@ -2237,17 +2237,7 @@
     "@types/istanbul-lib-coverage" "^2.0.0"
     collect-v8-coverage "^1.0.0"
 
-"@jest/test-result@^27.2.2", "@jest/test-result@^27.3.1":
-  version "27.3.1"
-  resolved "https://registry.yarnpkg.com/@jest/test-result/-/test-result-27.3.1.tgz#89adee8b771877c69b3b8d59f52f29dccc300194"
-  integrity sha512-mLn6Thm+w2yl0opM8J/QnPTqrfS4FoXsXF2WIWJb2O/GBSyResL71BRuMYbYRsGt7ELwS5JGcEcGb52BNrumgg==
-  dependencies:
-    "@jest/console" "^27.3.1"
-    "@jest/types" "^27.2.5"
-    "@types/istanbul-lib-coverage" "^2.0.0"
-    collect-v8-coverage "^1.0.0"
-
-"@jest/test-result@^27.4.2":
+"@jest/test-result@^27.2.2", "@jest/test-result@^27.3.1", "@jest/test-result@^27.4.2":
   version "27.4.2"
   resolved "https://registry.yarnpkg.com/@jest/test-result/-/test-result-27.4.2.tgz#05fd4a5466ec502f3eae0b39dff2b93ea4d5d9ec"
   integrity sha512-kr+bCrra9jfTgxHXHa2UwoQjxvQk3Am6QbpAiJ5x/50LW8llOYrxILkqY0lZRW/hu8FXesnudbql263+EW9iNA==
@@ -2618,6 +2608,18 @@
     yargs "15.4.1"
     yargs-parser "20.0.0"
 
+"@nrwl/cli@13.4.0":
+  version "13.4.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-13.4.0.tgz#ac4d7135855f2fc9ddb49f4e8d21782382e09500"
+  integrity sha512-BNURpCHEW61vGmehazFVFHHMaUQEMYZtPfVSQZcBhZiqV6adbemzQdsLZyYLMblZKJa8MX56YOArBa69Z1mPRg==
+  dependencies:
+    "@nrwl/tao" "13.4.0"
+    chalk "4.1.0"
+    enquirer "~2.3.6"
+    v8-compile-cache "2.3.0"
+    yargs "15.4.1"
+    yargs-parser "20.0.0"
+
 "@nrwl/cypress@13.3.8":
   version "13.3.8"
   resolved "https://registry.yarnpkg.com/@nrwl/cypress/-/cypress-13.3.8.tgz#694664fbdb6dde56930c3ce13b6eece199f7aa77"
@@ -2650,6 +2652,18 @@
     semver "7.3.4"
     tslib "^2.3.0"
 
+"@nrwl/devkit@13.4.0":
+  version "13.4.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/devkit/-/devkit-13.4.0.tgz#69af5d09b2f533340699ae7fbd5fdc9e13a1411c"
+  integrity sha512-KKqDY766Z5ryKYywtBbO2sVptMPgN71qFnI1v//hzPvbl0qOPx6iphUfaM0vIL8YX4NssZElrYj0//EE6cwfXQ==
+  dependencies:
+    "@nrwl/tao" "13.4.0"
+    ejs "^3.1.5"
+    ignore "^5.0.4"
+    rxjs "^6.5.4"
+    semver "7.3.4"
+    tslib "^2.3.0"
+
 "@nrwl/eslint-plugin-nx@13.3.8":
   version "13.3.8"
   resolved "https://registry.yarnpkg.com/@nrwl/eslint-plugin-nx/-/eslint-plugin-nx-13.3.8.tgz#7f737466ae7acc92e6021b59575c073bd8e594ed"
@@ -2670,6 +2684,23 @@
     "@jest/reporters" "27.2.2"
     "@jest/test-result" "27.2.2"
     "@nrwl/devkit" "13.3.8"
+    chalk "4.1.0"
+    identity-obj-proxy "3.0.0"
+    jest-config "27.2.2"
+    jest-resolve "27.2.2"
+    jest-util "27.2.0"
+    resolve.exports "1.1.0"
+    rxjs "^6.5.4"
+    tslib "^2.3.0"
+
+"@nrwl/jest@13.4.0":
+  version "13.4.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/jest/-/jest-13.4.0.tgz#9859e65a7b4d947f2cbd27f8ab8a6f0cc34ffc6a"
+  integrity sha512-FBaqWnnLYez/EbgGgHDzSuG0g694mgJWGIHSjFLLMJ3Oa6KAWFc9TnGz/M9Xs90FLwxGT/+8DwT0nD3Xo+lJaA==
+  dependencies:
+    "@jest/reporters" "27.2.2"
+    "@jest/test-result" "27.2.2"
+    "@nrwl/devkit" "13.4.0"
     chalk "4.1.0"
     identity-obj-proxy "3.0.0"
     jest-config "27.2.2"
@@ -2834,6 +2865,25 @@
     ignore "^5.0.4"
     jsonc-parser "3.0.0"
     nx "13.3.8"
+    rxjs "^6.5.4"
+    rxjs-for-await "0.0.2"
+    semver "7.3.4"
+    tmp "~0.2.1"
+    tslib "^2.3.0"
+    yargs-parser "20.0.0"
+
+"@nrwl/tao@13.4.0":
+  version "13.4.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-13.4.0.tgz#8a8dd5f8b6ebbc1d4edadf8b18a72ba208b378fd"
+  integrity sha512-Z55zSGOj2D5eQ4BW7T+A0MQtsNglPoTcMYdafULfx+wU1vOP7y/Yr2g7evti5Chkho31EvsP9z1/JW+s3QJARA==
+  dependencies:
+    chalk "4.1.0"
+    enquirer "~2.3.6"
+    fast-glob "3.2.7"
+    fs-extra "^9.1.0"
+    ignore "^5.0.4"
+    jsonc-parser "3.0.0"
+    nx "13.4.0"
     rxjs "^6.5.4"
     rxjs-for-await "0.0.2"
     semver "7.3.4"
@@ -9385,23 +9435,7 @@ jest-resolve@27.2.2:
     resolve "^1.20.0"
     slash "^3.0.0"
 
-jest-resolve@^27.2.2, jest-resolve@^27.3.1:
-  version "27.3.1"
-  resolved "https://registry.yarnpkg.com/jest-resolve/-/jest-resolve-27.3.1.tgz#0e5542172a1aa0270be6f66a65888647bdd74a3e"
-  integrity sha512-Dfzt25CFSPo3Y3GCbxynRBZzxq9AdyNN+x/v2IqYx6KVT5Z6me2Z/PsSGFSv3cOSUZqJ9pHxilao/I/m9FouLw==
-  dependencies:
-    "@jest/types" "^27.2.5"
-    chalk "^4.0.0"
-    graceful-fs "^4.2.4"
-    jest-haste-map "^27.3.1"
-    jest-pnp-resolver "^1.2.2"
-    jest-util "^27.3.1"
-    jest-validate "^27.3.1"
-    resolve "^1.20.0"
-    resolve.exports "^1.1.0"
-    slash "^3.0.0"
-
-jest-resolve@^27.4.4:
+jest-resolve@^27.2.2, jest-resolve@^27.3.1, jest-resolve@^27.4.4:
   version "27.4.4"
   resolved "https://registry.yarnpkg.com/jest-resolve/-/jest-resolve-27.4.4.tgz#5b690662f54f38f7cfaffc0adcdb341ff7724408"
   integrity sha512-Yh5jK3PBmDbm01Rc8pT0XqpBlTPEGwWp7cN61ijJuwony/tR2Taof3TLy6yfNiuRS8ucUOPO7NBYm3ei38kkcg==
@@ -9625,19 +9659,7 @@ jest-util@27.2.0:
     is-ci "^3.0.0"
     picomatch "^2.2.3"
 
-jest-util@^27.0.0, jest-util@^27.2.0, jest-util@^27.3.1:
-  version "27.3.1"
-  resolved "https://registry.yarnpkg.com/jest-util/-/jest-util-27.3.1.tgz#a58cdc7b6c8a560caac9ed6bdfc4e4ff23f80429"
-  integrity sha512-8fg+ifEH3GDryLQf/eKZck1DEs2YuVPBCMOaHQxVVLmQwl/CDhWzrvChTX4efLZxGrw+AA0mSXv78cyytBt/uw==
-  dependencies:
-    "@jest/types" "^27.2.5"
-    "@types/node" "*"
-    chalk "^4.0.0"
-    ci-info "^3.2.0"
-    graceful-fs "^4.2.4"
-    picomatch "^2.2.3"
-
-jest-util@^27.4.2:
+jest-util@^27.0.0, jest-util@^27.2.0, jest-util@^27.3.1, jest-util@^27.4.2:
   version "27.4.2"
   resolved "https://registry.yarnpkg.com/jest-util/-/jest-util-27.4.2.tgz#ed95b05b1adfd761e2cda47e0144c6a58e05a621"
   integrity sha512-YuxxpXU6nlMan9qyLuxHaMMOzXAl5aGZWCSzben5DhLHemYQxCc4YK+4L3ZrCutT8GPQ+ui9k5D8rUJoDioMnA==
@@ -10762,6 +10784,13 @@ nx@13.3.8:
   dependencies:
     "@nrwl/cli" "13.3.8"
 
+nx@13.4.0:
+  version "13.4.0"
+  resolved "https://registry.yarnpkg.com/nx/-/nx-13.4.0.tgz#d35492bcbf9365bfadc3ff997a3d229ad52b4623"
+  integrity sha512-KWCNk6ufaFF5+CL1c8Ri02fQaWckg8YkNaSS3OWVZ5bwLZpMqX8iDN8+XYyIaVCEoBssRoF384ZdLluGqBd0YQ==
+  dependencies:
+    "@nrwl/cli" "13.4.0"
+
 object-assign@^4, object-assign@^4.1.0, object-assign@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
@@ -11262,50 +11291,6 @@ pify@^5.0.0:
   resolved "https://registry.yarnpkg.com/pify/-/pify-5.0.0.tgz#1f5eca3f5e87ebec28cc6d54a0e4aaf00acc127f"
   integrity sha512-eW/gHNMlxdSP6dmG6uJip6FXN0EQBwm2clYYd8Wul42Cwu/DK8HEftzsapcNdYe2MfLiIwZqsDk2RDEsTE79hA==
 
-<<<<<<< HEAD
-=======
-pino-abstract-transport@^0.5.0, pino-abstract-transport@v0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/pino-abstract-transport/-/pino-abstract-transport-0.5.0.tgz#4b54348d8f73713bfd14e3dc44228739aa13d9c0"
-  integrity sha512-+KAgmVeqXYbTtU2FScx1XS3kNyfZ5TrXY07V96QnUSFqo2gAqlvmaxH67Lj7SWazqsMabf+58ctdTcBgnOLUOQ==
-  dependencies:
-    duplexify "^4.1.2"
-    split2 "^4.0.0"
-
-pino-http@^6.4.0:
-  version "6.4.0"
-  resolved "https://registry.yarnpkg.com/pino-http/-/pino-http-6.4.0.tgz#a20fa1c17894d6877cde74242b569a916ff636f6"
-  integrity sha512-REqy5H3RQtRoRt6cwqCXTtbryLYBUQcAufO8KZwvttbyiH1hdTq6UV5MQQ6pTsdGYlcpvyP+xgel+yUuQKyabQ==
-  dependencies:
-    fast-url-parser "^1.1.3"
-    get-caller-file "^2.0.5"
-    pino "^7.5.0"
-    pino-std-serializers "^5.0.0"
-
-pino-pretty@^7.2.0:
-  version "7.2.0"
-  resolved "https://registry.yarnpkg.com/pino-pretty/-/pino-pretty-7.2.0.tgz#6cd1500fa47a6e9011e87bb65e129cd4555265f1"
-  integrity sha512-pkZhaF1JiyQt4BRqkLANYWuZTxavmuXh3OHsb8goeQasTFgNdzOECXkZWyPYrA0YMRa8zKoVsCzeYz9lI2NYwA==
-  dependencies:
-    args "^5.0.1"
-    colorette "^2.0.7"
-    dateformat "^4.6.3"
-    fast-safe-stringify "^2.0.7"
-    joycon "^3.0.0"
-    pino-abstract-transport "^0.5.0"
-    pump "^3.0.0"
-    readable-stream "^3.6.0"
-    rfdc "^1.3.0"
-    secure-json-parse "^2.4.0"
-    sonic-boom "^2.2.0"
-    strip-json-comments "^3.1.1"
-
-pino-std-serializers@^2.0.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/pino-std-serializers/-/pino-std-serializers-2.5.0.tgz#40ead781c65a0ce7ecd9c1c33f409d31fe712315"
-  integrity sha512-wXqbqSrIhE58TdrxxlfLwU9eDhrzppQDvGhBEr1gYbzzM4KKo3Y63gSjiDXRKLVS2UOXdPNR2v+KnQgNrs+xUg==
-
->>>>>>> 9f8c26b57ca08183a2283cdf534ac4358a75cc27
 pino-std-serializers@^3.1.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/pino-std-serializers/-/pino-std-serializers-3.2.0.tgz#b56487c402d882eb96cd67c257868016b61ad671"
@@ -11324,26 +11309,6 @@ pino@^6.13.0:
     quick-format-unescaped "^4.0.3"
     sonic-boom "^1.0.2"
 
-<<<<<<< HEAD
-=======
-pino@^7.5.0:
-  version "7.5.1"
-  resolved "https://registry.yarnpkg.com/pino/-/pino-7.5.1.tgz#6e4cd3389e9365caf64039d4b83dcfa84ed43fee"
-  integrity sha512-Wzo2G7CLaRHKOz3+Ex006LC5Xi0xEUm+mwm/h0NKzuKZONdekcbmjXg7vWDoO8hVTGX+1RuUy2fwlzvZ24EI5A==
-  dependencies:
-    fast-redact "^3.0.0"
-    fastify-warning "^0.2.0"
-    get-caller-file "^2.0.5"
-    on-exit-leak-free "^0.2.0"
-    pino-abstract-transport v0.5.0
-    pino-std-serializers "^4.0.0"
-    quick-format-unescaped "^4.0.3"
-    real-require "^0.1.0"
-    safe-stable-stringify "^2.1.0"
-    sonic-boom "^2.2.1"
-    thread-stream "^0.13.0"
-
->>>>>>> 9f8c26b57ca08183a2283cdf534ac4358a75cc27
 pirates@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/pirates/-/pirates-4.0.1.tgz#643a92caf894566f91b2b986d2c66950a8e2fb87"
@@ -11748,7 +11713,7 @@ postcss@^8.2.15, postcss@^8.3.5:
     picocolors "^1.0.0"
     source-map-js "^0.6.2"
 
-postcss@^8.4.5:
+postcss@^8.4.4:
   version "8.4.5"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.5.tgz#bae665764dfd4c6fcc24dc0fdf7e7aa00cc77f95"
   integrity sha512-jBDboWM8qpaqwkMwItqTQTiFikhs/67OYVvblFFTM7MrZjt6yMKd6r2kgXizEbTTljacm4NldIlZnhbjr84QYg==
