@@ -1,4 +1,4 @@
-import Layout from '../components/layout';
+import Layout from '../components/Layout';
 import { gql } from '@apollo/client';
 import { initializeApollo } from '../apollo/client';
 
@@ -14,7 +14,6 @@ export async function getServerSideProps() {
       }
     `,
   });
-  console.log(errors);
   return {
     props: {
       errors: errors || null,
@@ -24,7 +23,6 @@ export async function getServerSideProps() {
 }
 
 export function Index({ users, error }) {
-  console.log(users);
   /*
    * Replace the elements below with your own.
    *

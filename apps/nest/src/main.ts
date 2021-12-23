@@ -9,11 +9,15 @@ import {
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
 import { AppModule } from './app/app.module';
-import { Logger } from 'nestjs-pino';
 import { ConfigService } from '@nestjs/config';
 import { AppConfigInterface } from './interfaces/config/app.interface';
 import { ValidationPipe } from './pipes/validation.pipe';
 import { useContainer } from 'class-validator';
+import {
+  WinstonModule,
+  WINSTON_MODULE_NEST_PROVIDER,
+  WINSTON_MODULE_PROVIDER,
+} from 'nest-winston';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -24,13 +28,13 @@ async function bootstrap() {
   const globalPrefix = 'api';
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
-  app.useLogger(app.get(Logger));
+  app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
   app.setGlobalPrefix(globalPrefix);
   const port = configService.get<AppConfigInterface>('app').port;
   await app.listen(port, () => {
     app
-      .get(Logger)
-      .debug(`Listening at http://localhost:${port}/${globalPrefix}`);
+      .get(WINSTON_MODULE_PROVIDER)
+      .info(`Listening at http://localhost:${port}/${globalPrefix}`);
   });
 }
 

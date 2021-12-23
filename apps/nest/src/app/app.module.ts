@@ -7,50 +7,30 @@ import { UserModule } from './user/user.module';
 import { join } from 'path';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import config from '../configs';
-import { LoggerModule } from 'nestjs-pino';
 import { GraphqlConfigInterface } from '../interfaces/config/graphql.interface';
 import { AppResolver } from './app.resolver';
-import { createWriteStream } from 'fs';
 import { JokeModule } from './joke/joke.module';
 import { APP_PIPE } from '@nestjs/core';
 import { ValidationPipe } from '../pipes/validation.pipe';
+import { WinstonModule } from 'nest-winston';
+import {
+  winstonFormat,
+  winstonTransportStream,
+} from '../utils/winston/winston';
 @Module({
   imports: [
     ConfigModule.forRoot({
       load: [config],
     }),
-    LoggerModule.forRootAsync({
+
+    WinstonModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
+
       useFactory: async (config: ConfigService) => {
-        const streams = [
-          { stream: createWriteStream(`./logs/info.log`) },
-          {
-            level: 'info',
-            stream: createWriteStream(`./logs/info.log`),
-          },
-          {
-            level: 'debug',
-            stream: createWriteStream(`./logs/debug.log`),
-          },
-          {
-            level: 'warn',
-            stream: createWriteStream(`./logs/warn.log`),
-          },
-          {
-            level: 'error',
-            stream: createWriteStream(`./logs/error.log`),
-          },
-          {
-            level: 'fatal',
-            stream: createWriteStream(`./fatal.log`),
-          },
-        ];
         return {
-          pinoHttp: {
-            level: 'debug',
-            streams,
-          },
+          format: winstonFormat,
+          transports: winstonTransportStream,
         };
       },
     }),

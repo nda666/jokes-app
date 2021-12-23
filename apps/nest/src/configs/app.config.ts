@@ -8,8 +8,10 @@ const AppConfig = {
     name: process.env.APP_NAME || 'Nest App',
     version: process.env.APP_VERSION || '1.0.0',
     port: parseInt(process.env.APP_PORT) || 3000,
-    logging: true,
-    loggingLevel: process.env.APP_LOGGING_LEVEL || 'info',
+    log:
+      process.env.APP_LOG?.toString().toLowerCase() === 'true' ? true : false,
+    logLevel: process.env.APP_LOG_LEVEL || 'info',
+    logDirectory: process.env.APP_LOGGING_DIRECTORY || './logs',
   },
 };
 

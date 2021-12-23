@@ -2,14 +2,7 @@ import { loadGetInitialProps } from 'next/dist/shared/lib/utils';
 import { useEffect, useRef, useState } from 'react';
 import ClickOutside from './ClickOutside';
 
-Navbar.getInitialProps = async (ctx) => {
-  const res = await fetch('https://api.github.com/repos/vercel/next.js');
-  const json = await res.json();
-  return { stars: json.stargazers_count };
-  
-};
-
-function Navbar(props) {
+function Navbar({ title }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isHumbergerOpen, setIsHumbergerOpen] = useState(false);
 
@@ -23,7 +16,7 @@ function Navbar(props) {
                 href="#"
                 className="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline"
               >
-                Flowtrail UI
+                {title}
               </a>
               <button
                 className="rounded-lg md:hidden focus:outline-none focus:shadow-outline"
@@ -55,29 +48,20 @@ function Navbar(props) {
                 isOpen ? 'flex' : 'hidden'
               } flex-col flex-grow pb-4 md:pb-0 md:flex md:justify-end md:flex-row`}
             >
-              <a
-                className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                href="#"
-              >
+              <a className="navbar-link" href="#">
                 Blog
               </a>
-              <a
-                className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                href="#"
-              >
+              <a className="navbar-link" href="#">
                 Portfolio
               </a>
-              <a
-                className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                href="#"
-              >
+              <a className="navbar-link" href="#">
                 About
               </a>
-              <a
-                className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                href="#"
-              >
+              <a className="navbar-link" href="#">
                 Contact
+              </a>
+              <a className="navbar-link" href="#">
+                Login
               </a>
               <ClickOutside
                 onClickOutside={() => {
@@ -86,7 +70,7 @@ function Navbar(props) {
               >
                 <button
                   onClick={() => setIsHumbergerOpen(!isHumbergerOpen)}
-                  className="flex flex-row text-gray-900 bg-gray-200 items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                  className="navbar-link"
                 >
                   <span>More</span>
                   <svg
