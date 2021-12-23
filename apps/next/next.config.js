@@ -9,6 +9,10 @@ const nextConfig = {
     // Set this to true if you would like to to use SVGR
     // See: https://github.com/gregberge/svgr
     svgr: false,
+    APP_NAME: process.env.APP_NAME || 'Next.js',
+  },
+  env: {
+    APP_NAME: process.env.APP_NAME || 'Next.js',
   },
 };
 

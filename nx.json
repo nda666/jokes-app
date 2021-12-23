@@ -23,7 +23,8 @@
           "test",
           "e2e"
         ],
-        "accessToken": "YjQ5ZGFlMmYtNzEwMi00OGI5LWEwYTgtZTAyOGZhOTY0OWQ0fHJlYWQtd3JpdGU="
+        "accessToken": "ZmIzMTRhN2ItNDFmNS00YjllLWExZWMtOGRlZWVhY2QwYmI4fHJlYWQtd3JpdGU=",
+        "parallel": 1
       }
     }
   },
