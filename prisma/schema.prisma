@@ -52,7 +52,7 @@ model Joke {
   category_id Int?
   category    Category? @relation(fields: [category_id], references: [id], onDelete: SetNull, onUpdate: Cascade)
 
-  createdAt DateTime  @default(now()) @db.Timestamp
+  createdAt DateTime? @default(now()) @db.Timestamp
   updatedAt DateTime? @updatedAt @db.Timestamp
 
   tags    Tag[]
@@ -66,7 +66,7 @@ model Category {
   id          Int       @id @default(autoincrement())
   name        String    @unique
   description String    @db.Text
-  createdAt   DateTime  @default(now()) @db.Timestamp
+  createdAt   DateTime? @default(now()) @db.Timestamp
   updatedAt   DateTime? @updatedAt @db.Timestamp
 
   Jokes Joke[]
@@ -82,24 +82,24 @@ model Tag {
 }
 
 model Like {
-  id        Int      @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
   user_id   Int?
-  user      User?    @relation(fields: [user_id], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  user      User?     @relation(fields: [user_id], references: [id], onDelete: SetNull, onUpdate: Cascade)
   joke_id   Int?
-  joke      Joke?    @relation(fields: [joke_id], references: [id], onDelete: SetNull, onUpdate: Cascade)
-  createdAt DateTime @default(now()) @db.Timestamp
+  joke      Joke?     @relation(fields: [joke_id], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  createdAt DateTime? @default(now()) @db.Timestamp
 
   @@map("likes")
 }
 
 model Rating {
-  id        Int      @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
   user_id   Int?
-  user      User?    @relation(fields: [user_id], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  user      User?     @relation(fields: [user_id], references: [id], onDelete: SetNull, onUpdate: Cascade)
   joke_id   Int?
-  joke      Joke?    @relation(fields: [joke_id], references: [id], onDelete: SetNull, onUpdate: Cascade)
-  value     Int      @default(dbgenerated("0")) @db.TinyInt
-  createdAt DateTime @default(now()) @db.Timestamp
+  joke      Joke?     @relation(fields: [joke_id], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  value     Int       @default(dbgenerated("0")) @db.TinyInt
+  createdAt DateTime? @default(now()) @db.Timestamp
 
   @@map("ratings")
 }
