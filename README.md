@@ -1,7 +1,4 @@
-# NxnestTiar 
-
-This project was generated using [Nx](https://nx.dev).
-## Jokes Apps
+# Jokes Apps [WIP :construction:]
 Require: 
 - Nodejs 14.x
 - Mysql
