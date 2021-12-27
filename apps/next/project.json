@@ -54,7 +54,7 @@
       "options": {
         "commands": [
           {
-            "command": "sleep 5 && pm2 start \"yarn nx serve next --no-dev\" --watch --name next"
+            "command": "sleep 5 && pm2 start \"yarn nx serve next --no-dev\" --name next"
           }
         ]
       }

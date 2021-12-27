@@ -37,7 +37,7 @@
       "options": {
         "commands": [
           {
-            "command": "pm2 start ./dist/apps/nest/main.js --watch --name nest"
+            "command": "pm2 start ./dist/apps/nest/main.js --name nest"
           }
         ]
       }
