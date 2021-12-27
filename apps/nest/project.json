@@ -47,7 +47,7 @@
       "options": {
         "commands": [
           {
-            "command": "pm2 stop nest"
+            "command": "pm2 stop next"
           }
         ]
       }

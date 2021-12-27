@@ -48,6 +48,26 @@
       "options": {
         "lintFilePatterns": ["apps/next/**/*.{ts,tsx,js,jsx}"]
       }
+    },
+    "serve-prod": {
+      "builder": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "sleep 5 && pm2 start yarn --watch --name next bash -- nx serve next --no-dev"
+          }
+        ]
+      }
+    },
+    "serve-prod-stop": {
+      "builder": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "pm2 stop next"
+          }
+        ]
+      }
     }
   },
   "tags": []
