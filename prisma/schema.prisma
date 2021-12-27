@@ -34,7 +34,7 @@ model User {
   password  String
   birthday  DateTime   @db.Date
   role      users_role @default(USER)
-  createdAt DateTime   @db.Timestamp @default(now())
+  createdAt DateTime   @default(now()) @db.Timestamp
   updatedAt DateTime?  @updatedAt
 
   Jokes  Joke[]
@@ -52,8 +52,8 @@ model Joke {
   category_id Int?
   category    Category? @relation(fields: [category_id], references: [id], onDelete: SetNull, onUpdate: Cascade)
 
-  createdAt DateTime? @db.Timestamp @default(now())
-  updatedAt DateTime? @updatedAt 
+  createdAt DateTime? @default(now()) @db.Timestamp
+  updatedAt DateTime? @updatedAt
 
   tags    Tag[]
   likes   Like[]
@@ -66,7 +66,7 @@ model Category {
   id          Int       @id @default(autoincrement())
   name        String    @unique
   description String    @db.Text
-  createdAt   DateTime? @db.Timestamp @default(now()) 
+  createdAt   DateTime? @default(now()) @db.Timestamp
   updatedAt   DateTime? @updatedAt
 
   Jokes Joke[]
@@ -87,7 +87,7 @@ model Like {
   user      User?     @relation(fields: [user_id], references: [id], onDelete: SetNull, onUpdate: Cascade)
   joke_id   Int?
   joke      Joke?     @relation(fields: [joke_id], references: [id], onDelete: SetNull, onUpdate: Cascade)
-  createdAt DateTime? @db.Timestamp @default(now())
+  createdAt DateTime? @default(now()) @db.Timestamp
 
   @@map("likes")
 }
@@ -99,7 +99,7 @@ model Rating {
   joke_id   Int?
   joke      Joke?     @relation(fields: [joke_id], references: [id], onDelete: SetNull, onUpdate: Cascade)
   value     Int       @default(dbgenerated("0")) @db.TinyInt
-  createdAt DateTime? @db.Timestamp @default(now())
+  createdAt DateTime? @default(now()) @db.Timestamp
 
   @@map("ratings")
 }
