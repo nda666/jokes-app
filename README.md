@@ -1,5 +1,5 @@
 # Jokes Apps [WIP :construction:]
-Require: 
+Required: 
 - Nodejs 14.x
 - Mysql
 - Nginx

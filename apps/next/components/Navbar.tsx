@@ -1,187 +1,310 @@
-import { loadGetInitialProps } from 'next/dist/shared/lib/utils';
-import { useEffect, useRef, useState } from 'react';
-import ClickOutside from './ClickOutside';
+import {
+  Box,
+  Flex,
+  Text,
+  IconButton,
+  Button,
+  Stack,
+  Collapse,
+  Icon,
+  Link,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  useColorModeValue,
+  useBreakpointValue,
+  useDisclosure,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Avatar,
+  Tooltip,
+} from '@chakra-ui/react';
 
-function Navbar({ title }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isHumbergerOpen, setIsHumbergerOpen] = useState(false);
+import NextLink from 'next/link';
+import {
+  HamburgerIcon,
+  CloseIcon,
+  ChevronDownIcon,
+  ChevronRightIcon,
+} from '@chakra-ui/icons';
+import { HiOutlineUserCircle } from 'react-icons/hi';
+export default function Navbar({ title }: { title: string }) {
+  const { isOpen, onToggle } = useDisclosure();
 
   return (
-    <div className="min-h-screen">
-      <div className="antialiased bg-gray-100 dark-mode:bg-gray-900">
-        <div className="w-full text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800">
-          <div className="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
-            <div className="flex flex-row items-center justify-between p-4">
-              <a
-                href="#"
-                className="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline"
-              >
-                {title}
-              </a>
-              <button
-                className="rounded-lg md:hidden focus:outline-none focus:shadow-outline"
-                onClick={() => setIsOpen(!isOpen)}
-              >
-                <svg
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  className="w-6 h-6"
-                >
-                  {!isOpen ? (
-                    <path
-                      fillRule="evenodd"
-                      d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
-                      clipRule="evenodd"
-                    ></path>
-                  ) : (
-                    <path
-                      fillRule="evenodd"
-                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    ></path>
-                  )}
-                </svg>
-              </button>
-            </div>
-            <nav
-              className={`${
-                isOpen ? 'flex' : 'hidden'
-              } flex-col flex-grow pb-4 md:pb-0 md:flex md:justify-end md:flex-row`}
+    <Box minH={'60px'}>
+      <Box position={'fixed'} zIndex={1} top={0} width={'100%'} minH={'60px'}>
+        <Flex
+          bg={useColorModeValue('white', 'gray.800')}
+          color={useColorModeValue('gray.600', 'white')}
+          py={{ base: 2 }}
+          px={{ base: 4 }}
+          borderBottom={1}
+          borderStyle={'solid'}
+          borderColor={useColorModeValue('gray.200', 'gray.900')}
+          align={'center'}
+        >
+          <Flex
+            flex={{ base: 1, md: 'auto' }}
+            ml={{ base: -2 }}
+            display={{ base: 'flex', md: 'none' }}
+          >
+            <IconButton
+              onClick={onToggle}
+              icon={
+                isOpen ? (
+                  <CloseIcon w={3} h={3} />
+                ) : (
+                  <HamburgerIcon w={5} h={5} />
+                )
+              }
+              variant={'ghost'}
+              aria-label={'Toggle Navigation'}
+            />
+          </Flex>
+          <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
+            <Text
+              textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
+              fontFamily={'heading'}
+              fontSize={'lg'}
+              fontWeight={'bold'}
+              letterSpacing={'0.05em'}
+              color={useColorModeValue('gray.800', 'white')}
             >
-              <a className="navbar-link" href="#">
-                Blog
-              </a>
-              <a className="navbar-link" href="#">
-                Portfolio
-              </a>
-              <a className="navbar-link" href="#">
-                About
-              </a>
-              <a className="navbar-link" href="#">
-                Contact
-              </a>
-              <a className="navbar-link" href="#">
-                Login
-              </a>
-              <ClickOutside
-                onClickOutside={() => {
-                  setIsHumbergerOpen(false);
+              {title}
+            </Text>
+
+            <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
+              <DesktopNav />
+            </Flex>
+          </Flex>
+
+          <NextLink href="/login" passHref>
+            <Tooltip label="Login, goes here!" aria-label="A tooltip">
+              <Link
+                as={Avatar}
+                bg={'blue.400'}
+                _hover={{
+                  bg: 'blue.300',
                 }}
-              >
-                <button
-                  onClick={() => setIsHumbergerOpen(!isHumbergerOpen)}
-                  className="navbar-link"
-                >
-                  <span>More</span>
-                  <svg
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    className={`${
-                      isOpen ? 'rotate-180' : 'rotate-0'
-                    } inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1`}
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                </button>
-                {isHumbergerOpen && (
-                  <div
-                    // x-transition:enter="transition ease-out duration-100"
-                    // x-transition:enter-start="transform opacity-0 scale-95"
-                    // x-transition:enter-end="transform opacity-100 scale-100"
-                    // x-transition:leave="transition ease-in duration-75"
-                    // x-transition:leave-start="transform opacity-100 scale-100"
-                    // x-transition:leave-end="transform opacity-0 scale-95"
-                    className="absolute right-0 w-full md:max-w-screen-sm md:w-screen mt-2 origin-top-right"
-                  >
-                    <div className="px-2 pt-2 pb-4 bg-white rounded-md shadow-lg dark-mode:bg-gray-700">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <a
-                          className="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                          href="#"
-                        >
-                          <div className="bg-teal-500 text-white rounded-lg p-3">
-                            <svg
-                              fill="none"
-                              stroke="currentColor"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth="2"
-                              viewBox="0 0 24 24"
-                              className="md:h-6 md:w-6 h-4 w-4"
-                            >
-                              <path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
-                            </svg>
-                          </div>
-                          <div className="ml-3">
-                            <p className="font-semibold">Appearance</p>
-                            <p className="text-sm">Easy customization</p>
-                          </div>
-                        </a>
+                width={'32px'}
+                height={'32px'}
+                color={'white'}
+              ></Link>
+            </Tooltip>
+          </NextLink>
+        </Flex>
 
-                        <a
-                          className="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                          href="#"
-                        >
-                          <div className="bg-teal-500 text-white rounded-lg p-3">
-                            <svg
-                              fill="none"
-                              stroke="currentColor"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth="2"
-                              viewBox="0 0 24 24"
-                              className="md:h-6 md:w-6 h-4 w-4"
-                            >
-                              <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                            </svg>
-                          </div>
-                          <div className="ml-3">
-                            <p className="font-semibold">Comments</p>
-                            <p className="text-sm">
-                              Check your latest comments
-                            </p>
-                          </div>
-                        </a>
-
-                        <a
-                          className="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                          href="#"
-                        >
-                          <div className="bg-teal-500 text-white rounded-lg p-3">
-                            <svg
-                              fill="none"
-                              stroke="currentColor"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth="2"
-                              viewBox="0 0 24 24"
-                              className="md:h-6 md:w-6 h-4 w-4"
-                            >
-                              <path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
-                              <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
-                            </svg>
-                          </div>
-                          <div className="ml-3">
-                            <p className="font-semibold">Analytics</p>
-                            <p className="text-sm">
-                              Take a look at your statistics
-                            </p>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </ClickOutside>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </div>
+        <Collapse in={isOpen} animateOpacity>
+          <MobileNav />
+        </Collapse>
+      </Box>
+    </Box>
   );
 }
-export default Navbar;
+
+const DesktopNav = () => {
+  const linkColor = useColorModeValue('gray.600', 'gray.200');
+  const linkHoverColor = useColorModeValue('gray.800', 'white');
+  const popoverContentBgColor = useColorModeValue('white', 'gray.800');
+
+  return (
+    <Stack direction={'row'} spacing={4}>
+      {NAV_ITEMS.map((navItem) => (
+        <Box key={navItem.label}>
+          <Popover trigger={'hover'} placement={'bottom-start'}>
+            <PopoverTrigger>
+              <Link
+                p={2}
+                href={navItem.href ?? '#'}
+                fontSize={'sm'}
+                fontWeight={500}
+                color={linkColor}
+                _hover={{
+                  textDecoration: 'none',
+                  color: linkHoverColor,
+                }}
+              >
+                {navItem.label}
+              </Link>
+            </PopoverTrigger>
+
+            {navItem.children && (
+              <PopoverContent
+                border={0}
+                boxShadow={'xl'}
+                bg={popoverContentBgColor}
+                p={4}
+                rounded={'xl'}
+                minW={'sm'}
+              >
+                <Stack>
+                  {navItem.children.map((child) => (
+                    <DesktopSubNav key={child.label} {...child} />
+                  ))}
+                </Stack>
+              </PopoverContent>
+            )}
+          </Popover>
+        </Box>
+      ))}
+    </Stack>
+  );
+};
+
+const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
+  return (
+    <Link
+      href={href}
+      role={'group'}
+      display={'block'}
+      p={2}
+      rounded={'md'}
+      _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}
+    >
+      <Stack direction={'row'} align={'center'}>
+        <Box>
+          <Text
+            transition={'all .3s ease'}
+            _groupHover={{ color: 'pink.400' }}
+            fontWeight={500}
+          >
+            {label}
+          </Text>
+          <Text fontSize={'sm'}>{subLabel}</Text>
+        </Box>
+        <Flex
+          transition={'all .3s ease'}
+          transform={'translateX(-10px)'}
+          opacity={0}
+          _groupHover={{ opacity: '100%', transform: 'translateX(0)' }}
+          justify={'flex-end'}
+          align={'center'}
+          flex={1}
+        >
+          <Icon color={'pink.400'} w={5} h={5} as={ChevronRightIcon} />
+        </Flex>
+      </Stack>
+    </Link>
+  );
+};
+
+const MobileNav = () => {
+  return (
+    <Stack
+      bg={useColorModeValue('white', 'gray.800')}
+      p={4}
+      position={'fixed'}
+      width={'100%'}
+      height={'100%'}
+      display={{ md: 'none' }}
+    >
+      {NAV_ITEMS.map((navItem) => (
+        <MobileNavItem key={navItem.label} {...navItem} />
+      ))}
+    </Stack>
+  );
+};
+
+const MobileNavItem = ({ label, children, href }: NavItem) => {
+  const { isOpen, onToggle } = useDisclosure();
+
+  return (
+    <Stack spacing={4} onClick={children && onToggle}>
+      <Flex
+        py={2}
+        as={Link}
+        href={href ?? '#'}
+        justify={'space-between'}
+        align={'center'}
+        _hover={{
+          textDecoration: 'none',
+        }}
+      >
+        <Text
+          fontWeight={600}
+          color={useColorModeValue('gray.600', 'gray.200')}
+        >
+          {label}
+        </Text>
+        {children && (
+          <Icon
+            as={ChevronDownIcon}
+            transition={'all .25s ease-in-out'}
+            transform={isOpen ? 'rotate(180deg)' : ''}
+            w={6}
+            h={6}
+          />
+        )}
+      </Flex>
+
+      <Collapse in={isOpen} animateOpacity style={{ marginTop: '0!important' }}>
+        <Stack
+          mt={2}
+          pl={4}
+          borderLeft={1}
+          borderStyle={'solid'}
+          borderColor={useColorModeValue('gray.200', 'gray.700')}
+          align={'start'}
+        >
+          {children &&
+            children.map((child) => (
+              <Link key={child.label} py={2} href={child.href}>
+                {child.label}
+              </Link>
+            ))}
+        </Stack>
+      </Collapse>
+    </Stack>
+  );
+};
+
+interface NavItem {
+  label: string;
+  subLabel?: string;
+  children?: Array<NavItem>;
+  href?: string;
+}
+
+const NAV_ITEMS: Array<NavItem> = [
+  {
+    label: 'Inspiration',
+    children: [
+      {
+        label: 'Explore Design Work',
+        subLabel: 'Trending Design to inspire you',
+        href: '#',
+      },
+      {
+        label: 'New & Noteworthy',
+        subLabel: 'Up-and-coming Designers',
+        href: '#',
+      },
+    ],
+  },
+  {
+    label: 'Find Work',
+    children: [
+      {
+        label: 'Job Board',
+        subLabel: 'Find your dream design job',
+        href: '#',
+      },
+      {
+        label: 'Freelance Projects',
+        subLabel: 'An exclusive list for contract work',
+        href: '#',
+      },
+    ],
+  },
+  {
+    label: 'Learn Design',
+    href: '#',
+  },
+  {
+    label: 'Hire Designers',
+    href: '#',
+  },
+];

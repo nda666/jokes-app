@@ -2,7 +2,8 @@ import { ApolloProvider } from '@apollo/client';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useApollo } from '../apollo/client';
-import './styles.css';
+import { ChakraProvider } from '@chakra-ui/react';
+import './styles.scss';
 
 function App({ Component, pageProps }: AppProps) {
   const apolloClient = useApollo(pageProps.initialApolloState);
@@ -11,9 +12,11 @@ function App({ Component, pageProps }: AppProps) {
       <Head>
         <title>Welcome to next!</title>
       </Head>
-      <div className="app">
-        <Component {...pageProps} />
-      </div>
+      <ChakraProvider>
+        <div className="app">
+          <Component {...pageProps} />
+        </div>
+      </ChakraProvider>
     </ApolloProvider>
   );
 }

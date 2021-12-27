@@ -14,7 +14,7 @@
   "dependencies": {
     "@apollo/client": "^3.5.6",
     "@chakra-ui/icons": "^1.1.1",
-    "@chakra-ui/react": "^1.7.2",
+    "@chakra-ui/react": "^1.7.3",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@nestjs/common": "^8.0.0",
@@ -28,7 +28,6 @@
     "@paljs/plugins": "^4.0.8",
     "@prisma/client": "^3.7.0",
     "@rxap/plugin-localazy": "^12.1.2",
-    "@tailwindcss/forms": "^0.4.0",
     "apollo-server-core": "^3.5.0",
     "apollo-server-express": "^3.5.0",
     "apollo-server-fastify": "^3.5.0",
@@ -38,7 +37,7 @@
     "core-js": "^3.19.3",
     "faker": "^5.5.3",
     "file-stream-rotator": "^0.5.7",
-    "framer-motion": "^4",
+    "framer-motion": "^5",
     "graphql": "^15",
     "graphql-scalars": "^1.14.1",
     "graphql-type-json": "^0.3.2",
@@ -71,9 +70,6 @@
     "@nrwl/tao": "13.3.8",
     "@nrwl/web": "13.3.8",
     "@nrwl/workspace": "13.3.8",
-    "@tailwindcss/aspect-ratio": "^0.4.0",
-    "@tailwindcss/line-clamp": "^0.3.0",
-    "@tailwindcss/typography": "^0.5.0",
     "@testing-library/react": "12.1.2",
     "@testing-library/react-hooks": "7.0.2",
     "@types/bcrypt": "^5.0.0",
@@ -102,7 +98,6 @@
     "prisma-nestjs-graphql": "^14.6.1",
     "react-test-renderer": "17.0.2",
     "sass": "1.43.2",
-    "tailwindcss": "^3.0.7",
     "ts-jest": "27.1.2",
     "typescript": "~4.3.5"
   }
