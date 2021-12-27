@@ -31,7 +31,7 @@ async function bootstrap() {
   app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
   app.setGlobalPrefix(globalPrefix);
   const port = configService.get<AppConfigInterface>('app').port;
-  await app.listen(port, () => {
+  await app.listen(port, '0.0.0.0', () => {
     app
       .get(WINSTON_MODULE_PROVIDER)
       .info(`Listening at http://localhost:${port}/${globalPrefix}`);

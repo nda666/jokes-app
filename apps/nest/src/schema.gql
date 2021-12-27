@@ -1,0 +1,259 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""Application Types"""
+type Application {
+  """Application Name"""
+  name: String
+
+  """Application Version"""
+  version: String
+}
+
+input CreateOneJokeInput {
+  answer: String!
+  question: String!
+}
+
+input CreateOneUserInput {
+  data: UserCreateInput!
+}
+
+input DateTimeFilter {
+  equals: Timestamp
+  gt: Timestamp
+  gte: Timestamp
+  in: [Timestamp!]
+  lt: Timestamp
+  lte: Timestamp
+  not: NestedDateTimeFilter
+  notIn: [Timestamp!]
+}
+
+input DateTimeNullableFilter {
+  equals: Timestamp
+  gt: Timestamp
+  gte: Timestamp
+  in: [Timestamp!]
+  lt: Timestamp
+  lte: Timestamp
+  not: NestedDateTimeNullableFilter
+  notIn: [Timestamp!]
+}
+
+input Enumusers_roleFilter {
+  equals: users_role
+  in: [users_role!]
+  not: NestedEnumusers_roleFilter
+  notIn: [users_role!]
+}
+
+input IntFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntFilter
+  notIn: [Int!]
+}
+
+type Joke {
+  answer: String!
+  category_id: Int
+  createdAt: Timestamp!
+  id: ID!
+  question: String!
+  updatedAt: Timestamp
+  user_id: Int
+}
+
+type JokeModel {
+  answer: String!
+  category_id: Int
+  createdAt: Timestamp!
+  id: ID!
+  question: String!
+  updatedAt: Timestamp
+  user_id: Int
+}
+
+type Mutation {
+  createJoke(data: CreateOneJokeInput!): JokeModel!
+
+  """create one user, returns the created user"""
+  createOneUser(
+    """data for the new user"""
+    input: CreateOneUserInput!
+  ): UserModel!
+  deleteJoke(id: String!): JokeModel!
+  updateJoke(data: UpdateJokeInput!, id: String!): JokeModel!
+}
+
+input NestedDateTimeFilter {
+  equals: Timestamp
+  gt: Timestamp
+  gte: Timestamp
+  in: [Timestamp!]
+  lt: Timestamp
+  lte: Timestamp
+  not: NestedDateTimeFilter
+  notIn: [Timestamp!]
+}
+
+input NestedDateTimeNullableFilter {
+  equals: Timestamp
+  gt: Timestamp
+  gte: Timestamp
+  in: [Timestamp!]
+  lt: Timestamp
+  lte: Timestamp
+  not: NestedDateTimeNullableFilter
+  notIn: [Timestamp!]
+}
+
+input NestedEnumusers_roleFilter {
+  equals: users_role
+  in: [users_role!]
+  not: NestedEnumusers_roleFilter
+  notIn: [users_role!]
+}
+
+input NestedIntFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntFilter
+  notIn: [Int!]
+}
+
+input NestedStringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+input NestedStringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringNullableFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+type Query {
+  app: Application!
+  joke(id: String!): String!
+  jokes: [JokeModel!]!
+  users(find: UserWhereInput, order: UserOrderByWithRelationInput): [UserModel!]!
+}
+
+enum SortOrder {
+  asc
+  desc
+}
+
+input StringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+input StringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringNullableFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+"""
+`Date` type as integer. Type represents date and time as number of milliseconds from start of UNIX epoch.
+"""
+scalar Timestamp
+
+input UpdateJokeInput {
+  answer: String
+  question: String
+}
+
+input UserCreateInput {
+  birthday: Timestamp!
+  email: String!
+  name: String
+  password: String!
+}
+
+type UserModel {
+  Jokes: [Joke!]
+  birthday: Timestamp!
+  createdAt: Timestamp!
+  email: String!
+  id: ID!
+  name: String!
+  role: users_role!
+  updatedAt: Timestamp
+}
+
+input UserOrderByWithRelationInput {
+  birthday: SortOrder
+  createdAt: SortOrder
+  email: SortOrder
+  id: SortOrder
+  name: SortOrder
+  role: SortOrder
+  updatedAt: SortOrder
+}
+
+input UserWhereInput {
+  AND: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  birthday: DateTimeFilter
+  createdAt: DateTimeFilter
+  email: StringFilter
+  id: IntFilter
+  name: StringNullableFilter
+  password: StringFilter
+  role: Enumusers_roleFilter
+  updatedAt: DateTimeNullableFilter
+}
+
+enum users_role {
+  ADMIN
+  SUPERADMIN
+  USER
+}
