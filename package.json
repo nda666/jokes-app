@@ -69,7 +69,7 @@
     "@nrwl/react": "13.3.8",
     "@nrwl/tao": "13.3.8",
     "@nrwl/web": "13.3.8",
-    "@nrwl/workspace": "13.3.8",
+    "@nrwl/workspace": "13.4.1",
     "@testing-library/react": "12.1.2",
     "@testing-library/react-hooks": "7.0.2",
     "@types/bcrypt": "^5.0.0",
