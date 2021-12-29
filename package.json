@@ -23,7 +23,7 @@
     "@nestjs/graphql": "^9.1.1",
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^8.0.0",
-    "@nestjs/platform-fastify": "^8.0.0",
+    "@nestjs/platform-fastify": "^8.2.4",
     "@nrwl/next": "13.3.8",
     "@paljs/plugins": "^4.0.8",
     "@prisma/client": "^3.7.0",
