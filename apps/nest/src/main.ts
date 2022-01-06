@@ -11,7 +11,6 @@ import {
 import { AppModule } from './app/app.module';
 import { ConfigService } from '@nestjs/config';
 import { AppConfigInterface } from './interfaces/config/app.interface';
-import { ValidationPipe } from './pipes/validation.pipe';
 import { useContainer } from 'class-validator';
 import {
   WinstonModule,

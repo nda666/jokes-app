@@ -1,6 +1,6 @@
 module.exports = {
-  displayName: 'nest',
-  preset: '../../jest.preset.js',
+  displayName: 'src-i18n',
+  preset: '../../../jest.preset.js',
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
@@ -11,5 +11,5 @@ module.exports = {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/apps/nest',
+  coverageDirectory: '../../../coverage/apps/src/i18n',
 };

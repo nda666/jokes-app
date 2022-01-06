@@ -4,7 +4,6 @@ import { users_role } from './users-role.enum';
 
 @InputType()
 export class Enumusers_roleFieldUpdateOperationsInput {
-
-    @Field(() => users_role, {nullable:true})
-    set?: keyof typeof users_role;
+  @Field(() => users_role, { nullable: true })
+  set?: keyof typeof users_role;
 }

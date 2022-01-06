@@ -1,14 +1,14 @@
-import { ApolloProvider } from '@apollo/client';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useApollo } from '../apollo/client';
 import { ChakraProvider } from '@chakra-ui/react';
 import './styles.scss';
+import { AuthProvider } from '../lib/auth';
 
 function App({ Component, pageProps }: AppProps) {
   const apolloClient = useApollo(pageProps.initialApolloState);
   return (
-    <ApolloProvider client={apolloClient}>
+    <AuthProvider>
       <Head>
         <title>Welcome to next!</title>
       </Head>
@@ -17,7 +17,7 @@ function App({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </div>
       </ChakraProvider>
-    </ApolloProvider>
+    </AuthProvider>
   );
 }
 

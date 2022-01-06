@@ -4,8 +4,10 @@ import { ID } from '@nestjs/graphql';
 import { users_role } from '../../../prisma/decorator/users-role.enum';
 import { Joke } from '../../joke/entities/joke.entity';
 
-@ObjectType()
-export class UserModel {
+@ObjectType({
+  description: 'user model',
+})
+export class User {
   @Field(() => ID, { nullable: false })
   id!: number;
 

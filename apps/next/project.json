@@ -50,7 +50,7 @@
       }
     },
     "serve-prod": {
-      "builder": "@nrwl/workspace:run-commands",
+      "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
           {
@@ -60,7 +60,7 @@
       }
     },
     "serve-prod-stop": {
-      "builder": "@nrwl/workspace:run-commands",
+      "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
           {

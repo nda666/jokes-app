@@ -14,11 +14,29 @@ import { APP_PIPE } from '@nestjs/core';
 import { ValidationPipe } from '../pipes/validation.pipe';
 import { WinstonModule } from 'nest-winston';
 import {
+  I18nModule,
+  I18nJsonParser,
+  HeaderResolver,
+  AcceptLanguageResolver,
+  CookieResolver,
+} from 'nestjs-i18n';
+import {
   winstonFormat,
   winstonTransportStream,
 } from '../utils/winston/winston';
+import { AuthModule } from './auth/auth.module';
+import { QueryResolver } from '@app-nest/i18n/QueryResolver';
 @Module({
   imports: [
+    I18nModule.forRoot({
+      fallbackLanguage: 'en',
+      parser: I18nJsonParser,
+      parserOptions: {
+        path: join(__dirname, '/i18n/'),
+        watch: true,
+      },
+      resolvers: [AcceptLanguageResolver],
+    }),
     ConfigModule.forRoot({
       load: [config],
     }),
@@ -51,9 +69,16 @@ import {
           buildSchemaOptions: {
             dateScalarMode: 'timestamp',
           },
+          context: ({ req, connection }) => {
+            if (connection) {
+              return connection.context;
+            }
+            return { req };
+          },
         };
       },
     }),
+    AuthModule,
     UserModule,
     JokeModule,
   ],

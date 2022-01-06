@@ -3,7 +3,7 @@ import { Args, Info, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { UserService } from './user.service';
 import { PrismaSelect } from '@paljs/plugins';
 import { CreateOneUserInput } from './dto/create-one-user.input';
-import { UserModel } from './dto/user.model';
+import { User as UserModel } from './dto/user.model';
 import { UserOrderByWithRelationInput } from './dto/user-order-by-with-relation.input';
 import { UserWhereInput } from './dto/user-where.input';
 

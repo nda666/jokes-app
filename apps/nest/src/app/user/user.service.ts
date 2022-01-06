@@ -23,6 +23,14 @@ export class UserService {
     });
   }
 
+  public async findOne(find?: any) {
+    return await this.prisma.user.findUnique({
+      where: {
+        ...find,
+      },
+    });
+  }
+
   public async createOne(
     data: CreateOneUserInput | CreateUserDto
   ): Promise<User> {

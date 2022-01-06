@@ -11,6 +11,16 @@ type Application {
   version: String
 }
 
+"""Auth Types"""
+type Auth {
+  """Valid for 30 days, used to get a new access token."""
+  refreshToken: String!
+
+  """Valid for 24 Hour"""
+  token: String!
+  user: User!
+}
+
 input CreateOneJokeInput {
   answer: String!
   question: String!
@@ -80,6 +90,11 @@ type JokeModel {
   user_id: Int
 }
 
+input LoginInput {
+  email: String!
+  password: String!
+}
+
 type Mutation {
   createJoke(data: CreateOneJokeInput!): JokeModel!
 
@@ -87,8 +102,12 @@ type Mutation {
   createOneUser(
     """data for the new user"""
     input: CreateOneUserInput!
-  ): UserModel!
+  ): User!
   deleteJoke(id: String!): JokeModel!
+  login(
+    """data for the new user"""
+    input: LoginInput!
+  ): Auth!
   updateJoke(data: UpdateJokeInput!, id: String!): JokeModel!
 }
 
@@ -164,7 +183,8 @@ type Query {
   app: Application!
   joke(id: String!): String!
   jokes: [JokeModel!]!
-  users(find: UserWhereInput, order: UserOrderByWithRelationInput): [UserModel!]!
+  me: User!
+  users(find: UserWhereInput, order: UserOrderByWithRelationInput): [User!]!
 }
 
 enum SortOrder {
@@ -210,14 +230,8 @@ input UpdateJokeInput {
   question: String
 }
 
-input UserCreateInput {
-  birthday: Timestamp!
-  email: String!
-  name: String
-  password: String!
-}
-
-type UserModel {
+"""user model"""
+type User {
   Jokes: [Joke!]
   birthday: Timestamp!
   createdAt: Timestamp!
@@ -226,6 +240,13 @@ type UserModel {
   name: String!
   role: users_role!
   updatedAt: Timestamp
+}
+
+input UserCreateInput {
+  birthday: Timestamp!
+  email: String!
+  name: String
+  password: String!
 }
 
 input UserOrderByWithRelationInput {
