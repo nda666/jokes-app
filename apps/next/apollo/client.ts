@@ -38,7 +38,7 @@ const errorLink = onError(
 );
 
 const httpLink = new HttpLink({
-  uri: process.env.APP_URL + '/graphql',
+  uri: 'http://localhost:4000/graphql',
 });
 
 const createApolloClient = () =>
@@ -50,7 +50,7 @@ const createApolloClient = () =>
 
 let apolloClient;
 
-export function initializeApollo(initialState = null) {
+export function initializeApollo(initialState = null): ApolloClient<any> {
   const _apolloClient = apolloClient ?? createApolloClient();
 
   // If your page has Next.js data fetching methods that use Apollo Client,

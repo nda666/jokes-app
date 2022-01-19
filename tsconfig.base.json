@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@app-nest/*": ["apps/nest/src/*"]
+      "@app-nest/*": ["apps/nest/src/*"],
+      "@app-next/*": ["apps/next/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]
