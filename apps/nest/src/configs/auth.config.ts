@@ -1,6 +1,6 @@
-import { AuthConfigInterface } from '../interfaces/config/auth.interface';
+import { AuthConfigInterface } from '@tiar-joke/core-interface';
 
-const AppConfig = {
+const AuthConfig = {
   auth: <AuthConfigInterface>{
     tokenExpiration: process.env.AUTH_TOKEN_EXPIRATION || '1d',
     refreshTokenExpiration: process.env.AUTH_REFRESH_TOKEN_EXPIRATION || '7d',
@@ -8,4 +8,4 @@ const AppConfig = {
   },
 };
 
-export default AppConfig;
+export default AuthConfig;

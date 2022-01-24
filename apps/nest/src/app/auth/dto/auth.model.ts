@@ -1,7 +1,6 @@
-import { AuthConfigInterface } from '@app-nest/interfaces/config/auth.interface';
 import { ConfigService } from '@nestjs/config';
 import { Field, ObjectType } from '@nestjs/graphql';
-import { User as UserModel } from '../../user/dto/user.model';
+import { User } from '@tiar-joke/core-user/types/user.model';
 
 @ObjectType({
   description: 'Auth Types',
@@ -15,6 +14,6 @@ export class Auth {
     description: 'Valid for 30 days, used to get a new access token.',
   })
   refreshToken: string;
-  @Field(() => UserModel, { nullable: false })
-  user: UserModel;
+  @Field(() => User, { nullable: false })
+  user: User;
 }

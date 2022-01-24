@@ -10,11 +10,12 @@
         "outputPath": "dist/apps/nest",
         "main": "apps/nest/src/main.ts",
         "tsConfig": "apps/nest/tsconfig.app.json",
-        "assets": ["apps/nest/src/assets", "apps/nest/src/i18n"]
+        "assets": ["apps/nest/src/assets", "apps/nest/src/i18n"],
+        "generatePackageJson": false
       },
       "configurations": {
         "production": {
-          "optimization": true,
+          "optimization": false,
           "extractLicenses": true,
           "inspect": false,
           "fileReplacements": [

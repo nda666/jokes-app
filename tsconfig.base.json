@@ -16,7 +16,15 @@
     "baseUrl": ".",
     "paths": {
       "@app-nest/*": ["apps/nest/src/*"],
-      "@app-next/*": ["apps/next/*"]
+      "@app-next/*": ["apps/next/*"],
+      "@tiar-joke/core-interface": ["libs/core/interface/src/index.ts"],
+      "@tiar-joke/core-joke": ["libs/core/joke/src/index.ts"],
+      "@tiar-joke/core-joke/*": ["libs/core/joke/src/lib/*"],
+      "@tiar-joke/core-prisma": ["libs/core/prisma/src/index.ts"],
+      "@tiar-joke/core-prisma/*": ["libs/core/prisma/src/lib/*"],
+      "@tiar-joke/core-user": ["libs/core/user/src/index.ts"],
+      "@tiar-joke/core-user/*": ["libs/core/user/src/lib/*"],
+      "@tiar-joke/core-validation": ["libs/core/validation/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

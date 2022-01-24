@@ -1,6 +1,11 @@
 {
   "version": 2,
   "projects": {
+    "core-interface": "libs/core/interface",
+    "core-joke": "libs/core/joke",
+    "core-prisma": "libs/core/prisma",
+    "core-user": "libs/core/user",
+    "core-validation": "libs/core/validation",
     "mobile": "apps/mobile",
     "mobile-e2e": "apps/mobile-e2e",
     "nest": "apps/nest",

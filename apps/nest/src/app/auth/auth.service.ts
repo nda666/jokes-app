@@ -1,14 +1,14 @@
 import { HttpException, Injectable } from '@nestjs/common';
-import { UserService } from '../user/user.service';
 import * as argon2 from 'argon2';
 import { JwtService } from '@nestjs/jwt';
 import { I18nRequestScopeService, I18nService } from 'nestjs-i18n';
 import { ConfigService } from '@nestjs/config';
-import { AuthConfigInterface } from '@app-nest/interfaces/config/auth.interface';
+import { CoreUserService } from '@tiar-joke/core-user';
+import { AuthConfigInterface } from '@tiar-joke/core-interface';
 @Injectable()
 export class AuthService {
   constructor(
-    private userService: UserService,
+    private userService: CoreUserService,
     private jwtService: JwtService,
     private i18nService: I18nRequestScopeService,
     private configService: ConfigService

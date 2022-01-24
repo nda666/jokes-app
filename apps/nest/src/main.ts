@@ -10,13 +10,13 @@ import {
 } from '@nestjs/platform-fastify';
 import { AppModule } from './app/app.module';
 import { ConfigService } from '@nestjs/config';
-import { AppConfigInterface } from './interfaces/config/app.interface';
 import { useContainer } from 'class-validator';
 import {
   WinstonModule,
   WINSTON_MODULE_NEST_PROVIDER,
   WINSTON_MODULE_PROVIDER,
 } from 'nest-winston';
+import { AppConfigInterface } from '@tiar-joke/core-interface';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(

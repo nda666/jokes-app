@@ -14,6 +14,7 @@ localazy.json
 
 # dependencies
 /node_modules
+schema.gql
 
 # IDEs and editors
 /.idea

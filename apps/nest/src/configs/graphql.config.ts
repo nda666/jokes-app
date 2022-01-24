@@ -1,4 +1,4 @@
-import { GraphqlConfigInterface } from '../interfaces/config/graphql.interface';
+import { GraphqlConfigInterface } from '@tiar-joke/core-interface';
 
 const GraphqlConfig = {
   graphql: <GraphqlConfigInterface>{

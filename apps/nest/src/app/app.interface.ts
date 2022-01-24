@@ -14,4 +14,10 @@ export class AppInterface {
     nullable: true,
   })
   version?: string;
+
+  @Field({
+    description: 'Application Environment',
+    nullable: true,
+  })
+  production?: boolean;
 }

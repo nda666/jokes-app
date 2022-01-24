@@ -1,8 +1,8 @@
 import { User } from '.prisma/client';
 import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { User as UserModel } from '@app-nest/app/user/dto/user.model';
-import { UserService } from '../user/user.service';
+import { User as UserModel } from '@tiar-joke/core-user/types/user.model';
+import { CoreUserService } from '@tiar-joke/core-user';
 import { CurrentUser } from './current-user.decorator';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import * as argon2 from 'argon2';
@@ -14,7 +14,7 @@ import { I18n, I18nContext } from 'nestjs-i18n';
 @Resolver()
 export class AuthResolver {
   constructor(
-    private readonly userService: UserService,
+    private readonly userService: CoreUserService,
     private readonly authService: AuthService
   ) {}
   @Query(() => UserModel)

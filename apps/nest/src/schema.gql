@@ -4,6 +4,9 @@
 
 """Application Types"""
 type Application {
+  """Application Environment"""
+  env: String
+
   """Application Name"""
   name: String
 
@@ -80,35 +83,25 @@ type Joke {
   user_id: Int
 }
 
-type JokeModel {
-  answer: String!
-  category_id: Int
-  createdAt: Timestamp!
-  id: ID!
-  question: String!
-  updatedAt: Timestamp
-  user_id: Int
-}
-
 input LoginInput {
   email: String!
   password: String!
 }
 
 type Mutation {
-  createJoke(data: CreateOneJokeInput!): JokeModel!
+  createJoke(data: CreateOneJokeInput!): Joke!
 
   """create one user, returns the created user"""
   createOneUser(
     """data for the new user"""
     input: CreateOneUserInput!
   ): User!
-  deleteJoke(id: String!): JokeModel!
+  deleteJoke(id: String!): Joke!
   login(
     """data for the new user"""
     input: LoginInput!
   ): Auth!
-  updateJoke(data: UpdateJokeInput!, id: String!): JokeModel!
+  updateJoke(data: UpdateJokeInput!, id: String!): Joke!
 }
 
 input NestedDateTimeFilter {
@@ -182,7 +175,7 @@ input NestedStringNullableFilter {
 type Query {
   app: Application!
   joke(id: String!): String!
-  jokes: [JokeModel!]!
+  jokes: [Joke!]!
   me: User!
   users(find: UserWhereInput, order: UserOrderByWithRelationInput): [User!]!
 }
@@ -273,6 +266,7 @@ input UserWhereInput {
   updatedAt: DateTimeNullableFilter
 }
 
+"""undefined"""
 enum users_role {
   ADMIN
   SUPERADMIN

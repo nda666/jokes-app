@@ -3,13 +3,9 @@ import { AppController } from './app.controller';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
 import { AppService } from './app.service';
-import { UserModule } from './user/user.module';
 import { join } from 'path';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import config from '../configs';
-import { GraphqlConfigInterface } from '../interfaces/config/graphql.interface';
 import { AppResolver } from './app.resolver';
-import { JokeModule } from './joke/joke.module';
 import { APP_PIPE } from '@nestjs/core';
 import { ValidationPipe } from '../pipes/validation.pipe';
 import { WinstonModule } from 'nest-winston';
@@ -26,8 +22,18 @@ import {
 } from '../utils/winston/winston';
 import { AuthModule } from './auth/auth.module';
 import { QueryResolver } from '@app-nest/i18n/QueryResolver';
+import configs from '@app-nest/configs';
+import {
+  AppConfigInterface,
+  GraphqlConfigInterface,
+} from '@tiar-joke/core-interface';
+import { CoreUserModule } from '@tiar-joke/core-user';
+import { CoreJokeModule } from '@tiar-joke/core-joke';
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      load: [configs],
+    }),
     I18nModule.forRoot({
       fallbackLanguage: 'en',
       parser: I18nJsonParser,
@@ -36,9 +42,6 @@ import { QueryResolver } from '@app-nest/i18n/QueryResolver';
         watch: true,
       },
       resolvers: [AcceptLanguageResolver],
-    }),
-    ConfigModule.forRoot({
-      load: [config],
     }),
 
     WinstonModule.forRootAsync({
@@ -61,11 +64,17 @@ import { QueryResolver } from '@app-nest/i18n/QueryResolver';
           config.get<GraphqlConfigInterface>('graphql');
         return {
           disableHealthCheck: graphqlConfig.disableHealthCheck,
-          autoSchemaFile: join(process.cwd(), 'apps/nest/src/schema.gql'),
+          autoSchemaFile: config.get<AppConfigInterface>('app').production
+            ? 'schema.gql'
+            : process.cwd() + '/apps/nest/src/schema.gql',
+
           debug: graphqlConfig.debug,
           sortSchema: graphqlConfig.sortSchema,
-          playground: false,
-          plugins: [await ApolloServerPluginLandingPageLocalDefault()],
+          playground: graphqlConfig.playground,
+          plugins:
+            graphqlConfig.playground === false
+              ? [await ApolloServerPluginLandingPageLocalDefault()]
+              : [],
           buildSchemaOptions: {
             dateScalarMode: 'timestamp',
           },
@@ -79,8 +88,8 @@ import { QueryResolver } from '@app-nest/i18n/QueryResolver';
       },
     }),
     AuthModule,
-    UserModule,
-    JokeModule,
+    CoreUserModule,
+    CoreJokeModule,
   ],
   controllers: [AppController],
   providers: [AppService, AppResolver],

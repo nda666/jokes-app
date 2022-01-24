@@ -8,6 +8,13 @@
     "react": "*",
     "react-native": "*",
     "react-native-config": "*",
-    "react-native-svg": "*"
+    "react-native-svg": "*",
+    "react-native-device-info": "*",
+    "react-native-linear-gradient": "*",
+    "react-native-gesture-handler": "*",
+    "react-native-safe-area-context": "*",
+    "react-native-vector-icons": "*",
+    "react-native-webview": "*",
+    "react-native-reanimated": "*"
   }
 }
