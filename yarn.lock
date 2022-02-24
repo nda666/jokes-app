@@ -4636,19 +4636,19 @@
     consola "^2.15.0"
     node-fetch "^2.6.1"
 
-"@paljs/plugins@^4.0.8":
-  version "4.0.8"
-  resolved "https://registry.yarnpkg.com/@paljs/plugins/-/plugins-4.0.8.tgz#3ae4c57f2efaca51d44d90540ac598f9b079c985"
-  integrity sha512-USgRg9y3fSOZMKLdsKHsPPmUHvLtPPV+zaTFLSF0X5YIhjfgOiPd6e9nGooXIxdt2Bllc6vQbyMNLfZx2SF5bg==
+"@paljs/plugins@^4.0.14":
+  version "4.0.14"
+  resolved "https://registry.yarnpkg.com/@paljs/plugins/-/plugins-4.0.14.tgz#fdfa7464bbe6dbf0e13a13c175ca6b7b8ec78125"
+  integrity sha512-j/sf69K0Kh57F+anKVxjp2Os4tokDNh4EAyZ+FWBh/v7Of7ed+BroS6D5xpzSc7F9K5EihIl18i7iXGZlwEiqQ==
   dependencies:
-    "@paljs/types" "^4.0.0"
+    "@paljs/types" "^4.0.14"
     graphql-fields "2.0.3"
-    graphql-tag "2.12.5"
+    graphql-tag "2.12.6"
 
-"@paljs/types@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@paljs/types/-/types-4.0.0.tgz#853017eec13d1e2ea73bbafa6493896e636e29cb"
-  integrity sha512-1HsZjBUcdjXvgDPilpSZT4gPgfvXNezsf+z7FdaC00haiubkzSgDOnwTQXieGwrONVXDvGoAeEOOxiPBHS6suA==
+"@paljs/types@^4.0.14":
+  version "4.0.14"
+  resolved "https://registry.yarnpkg.com/@paljs/types/-/types-4.0.14.tgz#8b7c2efe4d6c2338eac8d151e49cad7360d8c4fb"
+  integrity sha512-jfGLqmoL0xAhJamKeQ+l4G8vGJcGAiS/OSSqSwMPmCrX2DASRWYFhKN+5CDXZFNK2QCZd1mTQP1FCKGMs0wEkw==
 
 "@parcel/watcher@2.0.4":
   version "2.0.4"
@@ -11445,14 +11445,7 @@ graphql-scalars@^1.14.1:
   dependencies:
     tslib "~2.3.0"
 
-graphql-tag@2.12.5:
-  version "2.12.5"
-  resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.12.5.tgz#5cff974a67b417747d05c8d9f5f3cb4495d0db8f"
-  integrity sha512-5xNhP4063d16Pz3HBtKprutsPrmHZi5IdUGOWRxA2B6VF7BIRGOHZ5WQvDmJXZuPcBg7rYwaFxvQYjqkSdR3TQ==
-  dependencies:
-    tslib "^2.1.0"
-
-graphql-tag@^2.11.0, graphql-tag@^2.12.3:
+graphql-tag@2.12.6, graphql-tag@^2.11.0, graphql-tag@^2.12.3:
   version "2.12.6"
   resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.12.6.tgz#d441a569c1d2537ef10ca3d1633b48725329b5f1"
   integrity sha512-FdSNcu2QQcWnM2VNvSCCDCVS5PpPqpzgFT8+GXzqJuoDd0CBncxCY278u4mhRO7tMgo2JjgJA5aZ+nWSQ/Z+xg==
