@@ -33,7 +33,7 @@
     "@rxap/plugin-localazy": "^12.1.2",
     "@shoutem/ui": "^4.7.0",
     "apollo-server-core": "^3.5.0",
-    "apollo-server-express": "^3.5.0",
+    "apollo-server-express": "^3.6.5",
     "apollo-server-fastify": "^3.5.0",
     "argon2": "^0.28.3",
     "bcrypt": "^5.0.1",
